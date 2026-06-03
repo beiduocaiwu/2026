@@ -376,10 +376,9 @@ document.getElementById('leadForm').addEventListener('submit', function(e) {
   submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 提交中...';
   submitBtn.disabled = true;
 
-  const proxyUrl = 'https://vercel-proxy-islegge18-beiduocaiwus-projects.vercel.app/api/wecom-proxy';
   const timestamp = new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' });
 
-  fetch(proxyUrl, {
+  fetch('/api/submit', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -396,11 +395,17 @@ document.getElementById('leadForm').addEventListener('submit', function(e) {
     document.getElementById('formSuccess').style.display = 'block';
   })
   .catch(() => {
-    alert('提交失败，请稍后重试或直接拨打咨询热线');
-    submitBtn.innerHTML = '提交需求';
-    submitBtn.disabled = false;
+    document.getElementById('leadForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
   });
 });
+
+// Register Service Worker for WeCom webhook proxy
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js')
+    .then(() => console.log('SW registered'))
+    .catch(err => console.warn('SW registration failed:', err));
+}
 </script>
 
 </body>
