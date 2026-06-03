@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>四川贝多财务— 一站式企业服务专家</title>
+<meta name="description" content="四川贝多财务咨询有限公司，始于1999年，旗下8家专业子公司，提供工商、财务、税务、审计、评估、知识产权、建筑资质、行业许可、项目申报、法律等一站式企业服务。">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --blue-deep: #0A1F3F;
+  --blue-dark: #132D54;
+  --blue-mid: #1B4F8A;
+  --blue: #2563EB;
+  --blue-light: #3B82F6;
+  --blue-soft: #EFF6FF;
+  --gold: #C8922B;
+  --gold-light: #F0C060;
+  --white: #FFFFFF;
+  --gray-50: #F9FAFB;
+  --gray-100: #F3F4F6;
+  --gray-200: #E5E7EB;
+  --gray-300: #D1D5DB;
+  --gray-400: #9CA3AF;
+  --gray-500: #6B7280;
+  --gray-600: #4B5563;
+  --gray-700: #374151;
+  --gray-800: #1F2937;
+  --gray-900: #111827;
+  --radius: 12px;
+  --shadow-sm: 0 1px 2px rgba(0,0,0,0.05);
+  --shadow: 0 4px 6px -1px rgba(0,0,0,0.07), 0 2px 4px -2px rgba(0,0,0,0.05);
+  --shadow-md: 0 10px 25px -5px rgba(0,0,0,0.08), 0 4px 10px -6px rgba(0,0,0,0.05);
+  --shadow-lg: 0 20px 50px -12px rgba(0,0,0,0.12);
+  --shadow-xl: 0 25px 60px -15px rgba(0,0,0,0.18);
+  --transition: 0.3s cubic-bezier(0.4,0,0.2,1);
+}
+
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; font-size:16px; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; color: var(--gray-700); background: var(--white); line-height:1.7; overflow-x:hidden; }
+
+/* Container */
+.container { max-width:1200px; margin:0 auto; padding:0 24px; }
+
+/* ===== NAV ===== */
+.nav { position:fixed; top:0; left:0; right:0; z-index:1000; padding:16px 0; transition: all 0.4s ease; }
+.nav.scrolled { background: rgba(10,31,63,0.97); backdrop-filter: blur(16px); box-shadow: 0 2px 24px rgba(0,0,0,0.15); padding:10px 0; }
+.nav-inner { max-width:1200px; margin:0 auto; padding:0 24px; display:flex; align-items:center; justify-content:space-between; }
+.nav-logo { display:flex; align-items:center; gap:12px; text-decoration:none; }
+.nav-logo-icon { width:42px; height:42px; background: linear-gradient(135deg, var(--gold-light), var(--gold)); border-radius:10px; display:flex; align-items:center; justify-content:center; color:var(--white); font-weight:900; font-size:18px; }
+.nav-logo-text { color:var(--white); font-size:20px; font-weight:700; letter-spacing:0.5px; white-space:nowrap; }
+.nav-links { display:flex; align-items:center; gap:32px; list-style:none; }
+.nav-links a { color:rgba(255,255,255,0.85); text-decoration:none; font-size:15px; font-weight:500; transition: color 0.3s; position:relative; }
+.nav-links a:hover { color:var(--gold-light); }
+.nav-links a::after { content:''; position:absolute; bottom:-4px; left:0; width:0; height:2px; background:var(--gold-light); transition:width 0.3s; }
+.nav-links a:hover::after { width:100%; }
+.nav-cta { background: var(--gold); color:var(--white)!important; padding:10px 22px; border-radius:8px; font-weight:600!important; transition: all 0.3s!important; }
+.nav-cta:hover { background:var(--gold-light); transform:translateY(-1px); }
+.nav-cta::after { display:none!important; }
+.nav-toggle { display:none; background:none; border:none; color:var(--white); font-size:24px; cursor:pointer; }
+
+/* Mobile Nav */
+.mobile-menu { position:fixed; top:0; right:-100%; width:280px; height:100vh; background: var(--blue-deep); z-index:1001; padding:80px 32px 32px; transition: right 0.4s ease; display:flex; flex-direction:column; gap:20px; }
+.mobile-menu.open { right:0; }
+.mobile-menu a { color:rgba(255,255,255,0.9); text-decoration:none; font-size:16px; font-weight:500; padding:10px 0; border-bottom:1px solid rgba(255,255,255,0.1); }
+.mobile-menu .nav-cta { display:inline-block; text-align:center; margin-top:8px; }
+.mobile-overlay { position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:1000; opacity:0; pointer-events:none; transition:opacity 0.3s; }
+.mobile-overlay.open { opacity:1; pointer-events:auto; }
+.mobile-close { position:absolute; top:24px; right:24px; background:none; border:none; color:var(--white); font-size:24px; cursor:pointer; }
+
+/* ===== HERO ===== */
+.hero { position:relative; min-height:100vh; display:flex; align-items:center; background:linear-gradient(160deg, #0A1F3F 0%, #0D2854 30%, #132D54 50%, #1B4F8A 75%, #1a3660 100%); overflow:hidden; }
+.hero-bg-pattern { position:absolute; inset:0; opacity:0.06; background-image: radial-gradient(circle at 20% 30%, #fff 1px, transparent 1px), radial-gradient(circle at 80% 70%, #fff 1px, transparent 1px); background-size: 60px 60px, 80px 80px; }
+.hero-glow { position:absolute; width:600px; height:600px; border-radius:50%; filter:blur(120px); opacity:0.12; }
+.hero-glow-1 { top:-200px; right:-150px; background:var(--blue-light); }
+.hero-glow-2 { bottom:-250px; left:-200px; background:var(--gold); }
+.hero-content { position:relative; z-index:2; max-width:700px; }
+.hero-badge { display:inline-flex; align-items:center; gap:8px; background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.15); padding:8px 20px; border-radius:50px; color:rgba(255,255,255,0.85); font-size:14px; margin-bottom:28px; backdrop-filter:blur(8px); }
+.hero-badge i { color:var(--gold-light); font-size:12px; }
+.hero h1 { font-size:clamp(36px, 5.5vw, 58px); font-weight:800; color:var(--white); line-height:1.2; margin-bottom:20px; letter-spacing:-0.5px; }
+.hero h1 .highlight { background:linear-gradient(135deg, var(--gold-light), var(--gold)); -webkit-background-clip:text; -webkit-text-fill-color:transparent; background-clip:text; }
+.hero-desc { font-size:18px; color:rgba(255,255,255,0.7); margin-bottom:36px; max-width:560px; line-height:1.8; }
+.hero-btns { display:flex; gap:16px; flex-wrap:wrap; }
+.btn { display:inline-flex; align-items:center; gap:8px; padding:14px 32px; border-radius:10px; font-size:16px; font-weight:600; text-decoration:none; cursor:pointer; transition:all 0.3s; border:none; }
+.btn-primary { background:linear-gradient(135deg, var(--gold), #B8801E); color:var(--white); box-shadow:0 6px 24px rgba(200,146,43,0.35); }
+.btn-primary:hover { transform:translateY(-2px); box-shadow:0 10px 32px rgba(200,146,43,0.5); }
+.btn-outline { background:transparent; border:2px solid rgba(255,255,255,0.4); color:var(--white); }
+.btn-outline:hover { border-color:var(--white); background:rgba(255,255,255,0.06); }
+.hero-stats { display:flex; gap:48px; margin-top:56px; }
+.hero-stat { text-align:center; }
+.hero-stat-number { font-size:36px; font-weight:800; color:var(--gold-light); }
+.hero-stat-label { font-size:13px; color:rgba(255,255,255,0.55); margin-top:4px; text-transform:uppercase; letter-spacing:1px; }
+.hero-visual { position:absolute; right:-60px; top:50%; transform:translateY(-50%); width:580px; height:580px; z-index:1; opacity:0.95; }
+.hero-visual-inner { width:100%; height:100%; border-radius:50%; background:radial-gradient(circle, rgba(59,130,246,0.08) 0%, transparent 70%); display:flex; align-items:center; justify-content:center; position:relative; }
+.hero-icon-ring { position:absolute; width:100%; height:100%; animation: rotateSlow 30s linear infinite; }
+.hero-icon-ring i { position:absolute; color:rgba(255,255,255,0.5); font-size:24px; }
+.hero-icon-ring i:nth-child(1) { top:15%; left:50%; }
+.hero-icon-ring i:nth-child(2) { top:50%; right:15%; }
+.hero-icon-ring i:nth-child(3) { bottom:15%; left:50%; }
+.hero-icon-ring i:nth-child(4) { top:50%; left:15%; }
+@keyframes rotateSlow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+.hero-scroll-hint { position:absolute; bottom:40px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:8px; color:rgba(255,255,255,0.5); font-size:12px; z-index:2; }
+.hero-scroll-hint .mouse { width:22px; height:34px; border:2px solid rgba(255,255,255,0.35); border-radius:11px; position:relative; }
+.hero-scroll-hint .mouse::after { content:''; width:4px; height:8px; background:rgba(255,255,255,0.5); border-radius:2px; position:absolute; top:6px; left:50%; transform:translateX(-50%); animation:scrollWheel 1.6s ease-in-out infinite; }
+@keyframes scrollWheel { 0%,100%{opacity:1;top:6px} 50%{opacity:0.3;top:16px} }
+
+/* ===== SECTION COMMON ===== */
+.section { padding:100px 0; }
+.section-header { text-align:center; margin-bottom:64px; }
+.section-tag { display:inline-block; font-size:13px; font-weight:700; color:var(--blue); background:var(--blue-soft); padding:6px 16px; border-radius:50px; letter-spacing:2px; text-transform:uppercase; margin-bottom:16px; }
+.section-title { font-size:clamp(28px,4vw,40px); font-weight:800; color:var(--gray-900); margin-bottom:16px; }
+.section-subtitle { font-size:17px; color:var(--gray-500); max-width:600px; margin:0 auto; }
+
+/* ===== ABOUT ===== */
+.about { background:var(--white); }
+.about-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; align-items:center; }
+.about-image-wrap { position:relative; }
+.about-image { width:100%; aspect-ratio:4/3; background:linear-gradient(135deg, var(--blue-deep), var(--blue-mid)); border-radius:20px; position:relative; overflow:hidden; display:flex; align-items:center; justify-content:center; }
+.about-image-content { text-align:center; color:var(--white); padding:40px; }
+.about-image-content i { font-size:64px; margin-bottom:20px; opacity:0.5; }
+.about-image-content p { font-size:18px; opacity:0.8; line-height:1.8; }
+.about-image-float { position:absolute; bottom:-24px; right:-24px; background:var(--white); border-radius:16px; padding:20px 28px; box-shadow:var(--shadow-lg); display:flex; align-items:center; gap:16px; }
+.about-image-float-num { font-size:42px; font-weight:800; color:var(--blue); }
+.about-image-float-label { font-size:13px; color:var(--gray-500); line-height:1.5; }
+.about-text h2 { font-size:32px; font-weight:800; color:var(--gray-900); margin-bottom:20px; }
+.about-text .lead { font-size:18px; color:var(--blue-mid); font-weight:600; margin-bottom:20px; line-height:1.6; }
+.about-text p { font-size:15px; color:var(--gray-600); margin-bottom:24px; line-height:1.8; }
+.about-values { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.about-value-item { display:flex; align-items:center; gap:10px; padding:12px 16px; background:var(--gray-50); border-radius:10px; font-size:14px; font-weight:600; color:var(--gray-700); transition:all 0.3s; }
+.about-value-item:hover { background:var(--blue-soft); color:var(--blue); }
+.about-value-item i { color:var(--gold); font-size:14px; }
+
+/* ===== SUBSIDIARIES ===== */
+.subsidiaries { background:var(--gray-50); }
+.subsidiaries-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:20px; }
+.subsidiary-card { background:var(--white); border-radius:16px; padding:28px 24px; text-align:center; box-shadow:var(--shadow); transition:all 0.3s; border:1px solid transparent; }
+.subsidiary-card:hover { transform:translateY(-6px); box-shadow:var(--shadow-lg); border-color:var(--blue-soft); }
+.subsidiary-card-icon { width:56px; height:56px; background:var(--blue-soft); border-radius:14px; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; color:var(--blue); font-size:22px; }
+.subsidiary-card h3 { font-size:15px; font-weight:700; color:var(--gray-800); line-height:1.5; }
+
+/* ===== SERVICES ===== */
+.services { background:var(--white); }
+.services-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+.service-card { background:var(--white); border-radius:16px; padding:36px 28px; box-shadow:var(--shadow); transition:all 0.35s; border:1px solid var(--gray-100); position:relative; overflow:hidden; cursor:pointer; }
+.service-card::before { content:''; position:absolute; top:0; left:0; right:0; height:3px; background:linear-gradient(90deg, var(--blue), var(--blue-light)); transform:scaleX(0); transform-origin:left; transition:transform 0.4s ease; }
+.service-card:hover::before { transform:scaleX(1); }
+.service-card:hover { transform:translateY(-8px); box-shadow:var(--shadow-xl); border-color:transparent; }
+.service-card:hover .service-icon { background:var(--blue); color:var(--white); }
+.service-icon { width:56px; height:56px; background:var(--blue-soft); border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:22px; color:var(--blue); margin-bottom:20px; transition:all 0.3s; }
+.service-card h3 { font-size:18px; font-weight:700; color:var(--gray-800); margin-bottom:10px; }
+.service-card p { font-size:13px; color:var(--gray-500); line-height:1.7; }
+.service-card .service-link { display:inline-flex; align-items:center; gap:6px; margin-top:16px; font-size:13px; font-weight:600; color:var(--blue); text-decoration:none; transition:gap 0.3s; }
+.service-card:hover .service-link { gap:10px; }
+
+/* ===== STATS ===== */
+.stats { background:linear-gradient(160deg, var(--blue-deep), var(--blue-dark)); padding:80px 0; position:relative; overflow:hidden; }
+.stats::before { content:''; position:absolute; inset:0; background-image:radial-gradient(circle at 30% 50%, rgba(255,255,255,0.03) 0%, transparent 60%); }
+.stats-grid { display:grid; grid-template-columns:repeat(5,1fr); gap:32px; position:relative; z-index:1; }
+.stat-item { text-align:center; padding:32px 20px; }
+.stat-icon { width:60px; height:60px; background:rgba(255,255,255,0.08); border-radius:16px; display:flex; align-items:center; justify-content:center; margin:0 auto 20px; color:var(--gold-light); font-size:26px; }
+.stat-number { font-size:48px; font-weight:800; color:var(--white); line-height:1; margin-bottom:8px; display:flex; align-items:baseline; justify-content:center; gap:4px; }
+.stat-suffix { font-size:24px; font-weight:600; color:var(--gold-light); }
+.stat-label { font-size:14px; color:rgba(255,255,255,0.6); letter-spacing:1px; }
+
+/* ===== TIMELINE ===== */
+.timeline { background:var(--gray-50); position:relative; }
+.timeline-line { position:absolute; left:50%; top:0; bottom:0; width:2px; background:var(--gray-300); transform:translateX(-50%); }
+.timeline-items { position:relative; }
+.timeline-item { display:flex; align-items:center; margin-bottom:60px; position:relative; }
+.timeline-item:nth-child(odd) { flex-direction:row; }
+.timeline-item:nth-child(even) { flex-direction:row-reverse; }
+.timeline-dot { position:absolute; left:50%; top:50%; transform:translate(-50%,-50%); width:16px; height:16px; background:var(--blue); border-radius:50%; border:4px solid var(--white); box-shadow:0 0 0 4px var(--blue-soft); z-index:2; }
+.timeline-content { width:45%; background:var(--white); border-radius:16px; padding:28px 32px; box-shadow:var(--shadow-md); position:relative; }
+.timeline-year { font-size:14px; font-weight:700; color:var(--blue); margin-bottom:8px; }
+.timeline-content h3 { font-size:20px; font-weight:700; color:var(--gray-800); margin-bottom:8px; }
+.timeline-content p { font-size:14px; color:var(--gray-500); line-height:1.7; }
+.timeline-spacer { width:45%; }
+
+/* ===== HONORS ===== */
+.honors { background:var(--white); }
+.honors-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; }
+.honor-card { background:var(--gray-50); border-radius:16px; padding:32px 24px; text-align:center; transition:all 0.3s; border:1px solid var(--gray-100); }
+.honor-card:hover { background:var(--white); box-shadow:var(--shadow-lg); transform:translateY(-4px); }
+.honor-card-icon { width:64px; height:64px; background:linear-gradient(135deg, var(--blue-soft), #DBEAFE); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 16px; color:var(--blue); font-size:26px; }
+.honor-card h3 { font-size:17px; font-weight:700; color:var(--gray-800); margin-bottom:8px; }
+.honor-card p { font-size:13px; color:var(--gray-500); }
+
+/* ===== PARTNERS ===== */
+.partners { background:var(--gray-50); }
+.partners-grid { display:grid; grid-template-columns:repeat(6,1fr); gap:20px; }
+.partner-card { background:var(--white); border-radius:14px; padding:24px 20px; display:flex; align-items:center; justify-content:center; box-shadow:var(--shadow-sm); transition:all 0.3s; border:1px solid var(--gray-100); min-height:80px; }
+.partner-card:hover { box-shadow:var(--shadow-md); transform:translateY(-2px); border-color:var(--blue-soft); }
+.partner-card span { font-size:15px; font-weight:600; color:var(--gray-600); text-align:center; }
+
+/* ===== CONTACT / FORM ===== */
+.contact { background:var(--white); }
+.contact-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:start; }
+.contact-info h2 { font-size:30px; font-weight:800; color:var(--gray-900); margin-bottom:16px; }
+.contact-info > p { font-size:15px; color:var(--gray-500); margin-bottom:32px; line-height:1.8; }
+.contact-details { display:flex; flex-direction:column; gap:20px; }
+.contact-detail-item { display:flex; align-items:flex-start; gap:14px; }
+.contact-detail-item i { width:44px; height:44px; background:var(--blue-soft); border-radius:12px; display:flex; align-items:center; justify-content:center; color:var(--blue); font-size:18px; flex-shrink:0; }
+.contact-detail-item h4 { font-size:14px; color:var(--gray-500); margin-bottom:2px; font-weight:500; }
+.contact-detail-item p { font-size:15px; font-weight:600; color:var(--gray-800); }
+.contact-form-wrap { background:var(--gray-50); border-radius:20px; padding:40px; box-shadow:var(--shadow-md); border:1px solid var(--gray-100); position:sticky; top:100px; }
+.contact-form-wrap h3 { font-size:22px; font-weight:700; color:var(--gray-800); margin-bottom:8px; }
+.contact-form-wrap .form-subtitle { font-size:14px; color:var(--gray-500); margin-bottom:28px; }
+.form-group { margin-bottom:20px; }
+.form-group label { display:block; font-size:13px; font-weight:600; color:var(--gray-700); margin-bottom:6px; }
+.form-group input, .form-group textarea { width:100%; padding:12px 16px; border:1.5px solid var(--gray-200); border-radius:10px; font-size:15px; font-family:inherit; color:var(--gray-800); transition:all 0.3s; background:var(--white); outline:none; }
+.form-group input:focus, .form-group textarea:focus { border-color:var(--blue); box-shadow:0 0 0 3px rgba(37,99,235,0.1); }
+.form-group textarea { min-height:100px; resize:vertical; }
+.form-submit { width:100%; padding:14px; background:linear-gradient(135deg, var(--blue), var(--blue-mid)); color:var(--white); border:none; border-radius:10px; font-size:16px; font-weight:600; cursor:pointer; transition:all 0.3s; display:flex; align-items:center; justify-content:center; gap:8px; }
+.form-submit:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(37,99,235,0.35); }
+.form-success { display:none; text-align:center; padding:20px; }
+.form-success i { font-size:48px; color:#10B981; margin-bottom:12px; }
+.form-success p { font-size:15px; color:var(--gray-600); }
+
+/* ===== FOOTER ===== */
+.footer { background:var(--blue-deep); padding:60px 0 30px; color:rgba(255,255,255,0.7); }
+.footer-grid { display:grid; grid-template-columns:2fr 1fr 1fr 1.5fr; gap:40px; margin-bottom:40px; }
+.footer-brand h3 { font-size:22px; font-weight:700; color:var(--white); margin-bottom:14px; }
+.footer-brand p { font-size:14px; line-height:1.8; margin-bottom:20px; }
+.footer-col h4 { font-size:15px; font-weight:700; color:var(--white); margin-bottom:16px; }
+.footer-col ul { list-style:none; display:flex; flex-direction:column; gap:10px; }
+.footer-col ul a { color:rgba(255,255,255,0.6); text-decoration:none; font-size:14px; transition:color 0.3s; }
+.footer-col ul a:hover { color:var(--gold-light); }
+.footer-bottom { border-top:1px solid rgba(255,255,255,0.1); padding-top:24px; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; font-size:13px; }
+.footer-bottom a { color:rgba(255,255,255,0.5); text-decoration:none; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:1024px) {
+  .hero-visual { display:none; }
+  .services-grid { grid-template-columns:repeat(3,1fr); }
+  .subsidiaries-grid { grid-template-columns:repeat(2,1fr); }
+  .stats-grid { grid-template-columns:repeat(3,1fr); }
+  .honors-grid { grid-template-columns:repeat(2,1fr); }
+  .partners-grid { grid-template-columns:repeat(4,1fr); }
+  .about-grid { grid-template-columns:1fr; gap:40px; }
+  .contact-grid { grid-template-columns:1fr; gap:40px; }
+  .footer-grid { grid-template-columns:1fr 1fr; }
+  .timeline-line { left:24px; }
+  .timeline-item { flex-direction:row!important; }
+  .timeline-dot { left:24px; }
+  .timeline-content { width:calc(100% - 60px); margin-left:60px; }
+  .timeline-spacer { display:none; }
+}
+@media (max-width:768px) {
+  .nav-links { display:none; }
+  .nav-toggle { display:block; }
+  .hero-stats { gap:24px; flex-wrap:wrap; }
+  .hero-stat-number { font-size:28px; }
+  .services-grid { grid-template-columns:repeat(2,1fr); }
+  .stats-grid { grid-template-columns:repeat(2,1fr); }
+  .partners-grid { grid-template-columns:repeat(3,1fr); }
+  .footer-grid { grid-template-columns:1fr; }
+  .section { padding:64px 0; }
+}
+@media (max-width:480px) {
+  .services-grid { grid-template-columns:1fr; }
+  .subsidiaries-grid { grid-template-columns:1fr; }
+  .stats-grid { grid-template-columns:1fr 1fr; }
+  .honors-grid { grid-template-columns:1fr; }
+  .partners-grid { grid-template-columns:repeat(2,1fr); }
+  .hero h1 { font-size:28px; }
+  .hero-desc { font-size:15px; }
+  .about-values { grid-template-columns:1fr; }
+  .contact-form-wrap { padding:24px; }
+}
+
+@media (min-width:1025px) {
+  .hero-visual { display:block; }
+}
+
+/* ===== ANIMATION UTILS ===== */
+.fade-up { opacity:0; transform:translateY(40px); }
+.fade-in { opacity:0; }
+.scale-in { opacity:0; transform:scale(0.9); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav" id="nav">
+  <div class="nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="nav-logo-icon"><i class="fa-solid fa-building-columns"></i></div>
+      <span class="nav-logo-text">贝多财税</span>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#about">关于我们</a></li>
+      <li><a href="#services">服务项目</a></li>
+      <li><a href="#subsidiaries">旗下机构</a></li>
+      <li><a href="#honors">荣誉资质</a></li>
+      <li><a href="#partners">合作伙伴</a></li>
+      <li><a href="#contact" class="nav-cta">免费咨询</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="菜单"><i class="fa-solid fa-bars"></i></button>
+  </div>
+</nav>
+
+<div class="mobile-overlay" id="mobileOverlay"></div>
+<div class="mobile-menu" id="mobileMenu">
+  <button class="mobile-close" id="mobileClose"><i class="fa-solid fa-times"></i></button>
+  <a href="#about">关于我们</a>
+  <a href="#services">服务项目</a>
+  <a href="#subsidiaries">旗下机构</a>
+  <a href="#honors">荣誉资质</a>
+  <a href="#partners">合作伙伴</a>
+  <a href="#contact" class="nav-cta">免费咨询</a>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-glow hero-glow-1"></div>
+  <div class="hero-glow hero-glow-2"></div>
+  <div class="container" style="position:relative;z-index:2;">
+    <div class="hero-content">
+      <div class="hero-badge fade-up"><i class="fa-solid fa-circle"></i> 始于1999 · 一站式企业服务平台</div>
+      <h1 class="fade-up">以财税为核心<br><span class="highlight">孵化企业梦想</span>实现</h1>
+      <p class="hero-desc fade-up">旗下8家专业子公司，提供工商、财务、税务、审计、评估、知识产权、建筑资质、行业许可、项目申报、法律等全链条企业服务，为企业发展保驾护航。</p>
+      <div class="hero-btns fade-up">
+        <a href="#contact" class="btn btn-primary"><i class="fa-solid fa-headset"></i> 免费获取方案</a>
+        <a href="#services" class="btn btn-outline"><i class="fa-solid fa-arrow-down"></i> 了解服务详情</a>
+      </div>
+      <div class="hero-stats fade-up">
+        <div class="hero-stat"><div class="hero-stat-number counter" data-target="26">0</div><div class="hero-stat-label">年行业经验</div></div>
+        <div class="hero-stat"><div class="hero-stat-number counter" data-target="8">0</div><div class="hero-stat-label">专业子公司</div></div>
+        <div class="hero-stat"><div class="hero-stat-number counter" data-target="20000">0</div><div class="hero-stat-label">+ 服务客户</div></div>
+        <div class="hero-stat"><div class="hero-stat-number counter" data-target="11">0</div><div class="hero-stat-label">服务品类</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-visual-inner">
+      <div class="hero-icon-ring">
+        <i class="fa-solid fa-calculator"></i>
+        <i class="fa-solid fa-scale-balanced"></i>
+        <i class="fa-solid fa-file-invoice"></i>
+        <i class="fa-solid fa-chart-line"></i>
+      </div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <div class="mouse"></div>
+    <span>向下滚动</span>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="section about" id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-image-wrap fade-up">
+        <div class="about-image">
+          <div class="about-image-content">
+            <i class="fa-solid fa-building"></i>
+            <p>四川贝多财务咨询有限公司</p>
+            <p style="font-size:14px;opacity:0.7;margin-top:8px;">始于1999年 · 成都</p>
+          </div>
+          <div class="about-image-float">
+            <div class="about-image-float-num counter" data-target="8">0</div>
+            <div class="about-image-float-label">家专业<br>子公司</div>
+          </div>
+        </div>
+      </div>
+      <div class="about-text fade-up">
+        <span class="section-tag">ABOUT US</span>
+        <h2>四川贝多财务咨询有限公司</h2>
+        <p class="lead">以客户服务为中心，以员工幸福为基本，以企业稳定发展为基本</p>
+        <p>四川贝多财务咨询有限公司始创于1999年，深耕企业服务领域二十余载，现已发展成为以财税服务为核心，覆盖工商、审计、评估、知识产权、建筑资质、行业许可、项目申报、法律等全链条的一站式企业服务平台。旗下拥有8家专业子公司，与财政局、税务局、国资委等政府部门保持紧密合作关系。</p>
+        <div class="about-values">
+          <div class="about-value-item"><i class="fa-solid fa-shield-halved"></i> 正直诚信</div>
+          <div class="about-value-item"><i class="fa-solid fa-award"></i> 专业精进</div>
+          <div class="about-value-item"><i class="fa-solid fa-arrows-up-down"></i> 全面发展</div>
+          <div class="about-value-item"><i class="fa-solid fa-people-group"></i> 团结奋斗</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SUBSIDIARIES -->
+<section class="section subsidiaries" id="subsidiaries">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-tag">OUR GROUP</span>
+      <h2 class="section-title">旗下8家专业子公司</h2>
+      <p class="section-subtitle">汇聚财税、法律、评估、建设等多领域专业力量，一站式满足企业全生命周期需求</p>
+    </div>
+    <div class="subsidiaries-grid">
+      <div class="subsidiary-card fade-up"><div class="subsidiary-card-icon"><i class="fa-solid fa-calculator"></i></div><h3>四川天一会计师事务所</h3></div>
+      <div class="subsidiary-card fade-up"><div class="subsidiary-card-icon"><i class="fa-solid fa-chart-pie"></i></div><h3>四川贝多财务咨询有限公司</h3></div>
+      <div class="subsidiary-card fade-up"><div class="subsidiary-card-icon"><i class="fa-solid fa-file-lines"></i></div><h3>四川金算师税务师事务所</h3></div>
+      <div class="subsidiary-card fade-up"><div class="subsidiary-card-icon"><i class="fa-solid fa-house-chimney"></i></div><h3>四川天一房地产土地资产评估有限公司</h3></div>
+      <div class="subsidiary-card fade-up"><div class="subsidiary-card-icon"><i class="fa-solid fa-sitemap"></i></div><h3>四川顶梁柱企业管理有限公司</h3></div>
+      <div class="subsidiary-card fade-up"><div class="subsidiary-card-icon"><i class="fa-solid fa-trademark"></i></div><h3>四川顶梁柱商标代理有限公司</h3></div>
+      <div class="subsidiary-card fade-up"><div class="subsidiary-card-icon"><i class="fa-solid fa-hard-hat"></i></div><h3>天之瓴建设股份有限公司</h3></div>
+      <div class="subsidiary-card fade-up"><div class="subsidiary-card-icon"><i class="fa-solid fa-gavel"></i></div><h3>四川坤弘律师事务所</h3></div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section services" id="services">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-tag">OUR SERVICES</span>
+      <h2 class="section-title">一站式企业服务</h2>
+      <p class="section-subtitle">覆盖企业全生命周期的11大服务品类，从初创到上市，我们全程陪伴</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card fade-up">
+        <div class="service-icon"><i class="fa-solid fa-building-circle-check"></i></div>
+        <h3>工商服务</h3>
+        <p>公司注册、变更、注销、工商年报等一站式工商代办服务</p>
+        <span class="service-link">了解详情 <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon"><i class="fa-solid fa-coins"></i></div>
+        <h3>财务服务</h3>
+        <p>代理记账、财务外包、财务咨询、财务体系搭建等专业财务服务</p>
+        <span class="service-link">了解详情 <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon"><i class="fa-solid fa-receipt"></i></div>
+        <h3>税务服务</h3>
+        <p>税务筹划、汇算清缴、税务顾问、涉税争议解决等全方位税务服务</p>
+        <span class="service-link">了解详情 <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon"><i class="fa-solid fa-magnifying-glass-chart"></i></div>
+        <h3>审计服务</h3>
+        <p>年报审计、专项审计、内控审计、离任审计等各类审计鉴证服务</p>
+        <span class="service-link">了解详情 <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon"><i class="fa-solid fa-gem"></i></div>
+        <h3>评估服务</h3>
+        <p>资产评估、房地产评估、土地评估、无形资产评估等专业评估服务</p>
+        <span class="service-link">了解详情 <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon"><i class="fa-solid fa-lightbulb"></i></div>
+        <h3>知识产权</h3>
+        <p>商标注册、专利申请、版权登记、知识产权维权等全链条服务</p>
+        <span class="service-link">了解详情 <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon"><i class="fa-solid fa-trowel-bricks"></i></div>
+        <h3>建筑资质</h3>
+        <p>建筑施工资质新办、升级、延续、转让等建筑行业资质服务</p>
+        <span class="service-link">了解详情 <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon"><i class="fa-solid fa-id-card"></i></div>
+        <h3>行业许可</h3>
+        <p>食品经营许可、医疗器械许可、劳务派遣许可等各类行政许可代办</p>
+        <span class="service-link">了解详情 <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon"><i class="fa-solid fa-bullseye"></i></div>
+        <h3>项目申报</h3>
+        <p>高新技术企业认定、政府补贴申报、科技项目申报等政策咨询</p>
+        <span class="service-link">了解详情 <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon"><i class="fa-solid fa-file-shield"></i></div>
+        <h3>保函办理</h3>
+        <p>投标保函、履约保函、预付款保函等各类保函一站式办理服务</p>
+        <span class="service-link">了解详情 <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+      <div class="service-card fade-up">
+        <div class="service-icon"><i class="fa-solid fa-scale-balanced"></i></div>
+        <h3>法律服务</h3>
+        <p>常年法律顾问、合同审查、诉讼代理等企业法律风险防控服务</p>
+        <span class="service-link">了解详情 <i class="fa-solid fa-arrow-right"></i></span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats" id="stats">
+  <div class="container">
+    <div class="stats-grid">
+      <div class="stat-item fade-up">
+        <div class="stat-icon"><i class="fa-solid fa-building"></i></div>
+        <div class="stat-number"><span class="counter" data-target="8">0</span><span class="stat-suffix">家</span></div>
+        <div class="stat-label">专业子公司</div>
+      </div>
+      <div class="stat-item fade-up">
+        <div class="stat-icon"><i class="fa-solid fa-clock"></i></div>
+        <div class="stat-number"><span class="counter" data-target="26">0</span><span class="stat-suffix">年</span></div>
+        <div class="stat-label">行业深耕</div>
+      </div>
+      <div class="stat-item fade-up">
+        <div class="stat-icon"><i class="fa-solid fa-users"></i></div>
+        <div class="stat-number"><span class="counter" data-target="20000">0</span><span class="stat-suffix">+</span></div>
+        <div class="stat-label">服务客户</div>
+      </div>
+      <div class="stat-item fade-up">
+        <div class="stat-icon"><i class="fa-solid fa-layer-group"></i></div>
+        <div class="stat-number"><span class="counter" data-target="11">0</span><span class="stat-suffix">类</span></div>
+        <div class="stat-label">服务品类</div>
+      </div>
+      <div class="stat-item fade-up">
+        <div class="stat-icon"><i class="fa-solid fa-handshake"></i></div>
+        <div class="stat-number"><span class="counter" data-target="99">0</span><span class="stat-suffix">%</span></div>
+        <div class="stat-label">客户满意度</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TIMELINE -->
+<section class="section timeline" id="timeline">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-tag">MILESTONE</span>
+      <h2 class="section-title">发展历程</h2>
+      <p class="section-subtitle">二十余载砥砺前行，见证贝多财务的成长与蜕变</p>
+    </div>
+    <div style="position:relative;">
+      <div class="timeline-line"></div>
+      <div class="timeline-items">
+        <div class="timeline-item fade-up">
+          <div class="timeline-content">
+            <div class="timeline-year">1999</div>
+            <h3>扬帆起航</h3>
+            <p>四川贝多财务前身成立，以财税代理服务起步，迈出企业服务第一步</p>
+          </div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-spacer"></div>
+        </div>
+        <div class="timeline-item fade-up">
+          <div class="timeline-spacer"></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">2005</div>
+            <h3>业务拓展</h3>
+            <p>陆续成立会计师事务所、税务师事务所，服务品类从基础财税拓展至审计、税务筹划</p>
+          </div>
+        </div>
+        <div class="timeline-item fade-up">
+          <div class="timeline-content">
+            <div class="timeline-year">2012</div>
+            <h3>多元化布局</h3>
+            <p>成立资产评估公司、企业管理公司，业务延伸至资产评估、企业管理咨询领域</p>
+          </div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-spacer"></div>
+        </div>
+        <div class="timeline-item fade-up">
+          <div class="timeline-spacer"></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">2016</div>
+            <h3>生态构建</h3>
+            <p>新增商标代理、律师事务所，形成「财税+法律+知识产权」三位一体服务生态</p>
+          </div>
+        </div>
+        <div class="timeline-item fade-up">
+          <div class="timeline-content">
+            <div class="timeline-year">2020</div>
+            <h3>平台升级</h3>
+            <p>整合旗下资源，正式打造「四川贝多财税服务平台」，实现一站式企业服务闭环</p>
+          </div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-spacer"></div>
+        </div>
+        <div class="timeline-item fade-up">
+          <div class="timeline-spacer"></div>
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <div class="timeline-year">2023</div>
+            <h3>持续精进</h3>
+            <p>服务客户突破20000+家，持续升级服务体系，朝着「认可度高的优秀企业服务平台」迈进</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HONORS -->
+<section class="section honors" id="honors">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-tag">HONORS</span>
+      <h2 class="section-title">荣誉资质</h2>
+      <p class="section-subtitle">以专业实力赢得多项行业认可与荣誉</p>
+    </div>
+    <div class="honors-grid">
+      <div class="honor-card fade-up">
+        <div class="honor-card-icon"><i class="fa-solid fa-medal"></i></div>
+        <h3>理事单位</h3>
+        <p>行业协会理事单位，积极参与行业标准制定</p>
+      </div>
+      <div class="honor-card fade-up">
+        <div class="honor-card-icon"><i class="fa-solid fa-star"></i></div>
+        <h3>诚信企业</h3>
+        <p>连续多年获评诚信经营示范企业</p>
+      </div>
+      <div class="honor-card fade-up">
+        <div class="honor-card-icon"><i class="fa-solid fa-file-circle-check"></i></div>
+        <h3>税务信用示范</h3>
+        <p>税务信用等级优良，纳税信用示范企业</p>
+      </div>
+      <div class="honor-card fade-up">
+        <div class="honor-card-icon"><i class="fa-solid fa-trophy"></i></div>
+        <h3>最佳服务团队奖</h3>
+        <p>以卓越服务品质获得行业最佳服务团队荣誉</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PARTNERS -->
+<section class="section partners" id="partners">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-tag">PARTNERS</span>
+      <h2 class="section-title">合作伙伴</h2>
+      <p class="section-subtitle">与众多知名企业和机构建立长期战略合作关系</p>
+    </div>
+    <div class="partners-grid">
+      <div class="partner-card fade-up"><span>中国银行</span></div>
+      <div class="partner-card fade-up"><span>成都银行</span></div>
+      <div class="partner-card fade-up"><span>交通银行</span></div>
+      <div class="partner-card fade-up"><span>中国农业银行</span></div>
+      <div class="partner-card fade-up"><span>中国民生银行</span></div>
+      <div class="partner-card fade-up"><span>中国建设银行</span></div>
+      <div class="partner-card fade-up"><span>中国工商银行</span></div>
+      <div class="partner-card fade-up"><span>蓝光BRC</span></div>
+      <div class="partner-card fade-up"><span>中国中铁</span></div>
+      <div class="partner-card fade-up"><span>中国电建</span></div>
+      <div class="partner-card fade-up"><span>西南财经大学</span></div>
+      <div class="partner-card fade-up"><span>财政局 / 税务局 / 国资委</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="section contact" id="contact">
+  <div class="container">
+    <div class="section-header fade-up">
+      <span class="section-tag">CONTACT US</span>
+      <h2 class="section-title">联系我们</h2>
+      <p class="section-subtitle">免费获取专属企业服务方案，专业顾问一对一沟通</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info fade-up">
+        <h2>立即咨询</h2>
+        <p>无论您是初创企业还是成熟公司，贝多财务都能为您提供量身定制的企业服务方案。留下您的需求，专业顾问将在24小时内与您联系。</p>
+        <div class="contact-details">
+          <div class="contact-detail-item">
+            <i class="fa-solid fa-location-dot"></i>
+            <div><h4>办公地址</h4><p>成都市二环路西一段天祥广场商务公馆1301</p></div>
+          </div>
+          <div class="contact-detail-item">
+            <i class="fa-solid fa-phone"></i>
+            <div><h4>咨询热线</h4><p>189-8206-7269</p></div>
+          </div>
+          <div class="contact-detail-item">
+            <i class="fa-solid fa-envelope"></i>
+            <div><h4>电子邮箱</h4><p>1174614459@qq.com</p></div>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form-wrap fade-up" id="contactFormWrap">
+        <h3>免费获取方案</h3>
+        <p class="form-subtitle">填写以下信息，我们将尽快与您联系</p>
+        <form id="contactForm" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label>您的姓名 <span style="color:#EF4444;">*</span></label>
+            <input type="text" name="name" placeholder="请输入您的姓名" required>
+          </div>
+          <div class="form-group">
+            <label>联系电话 <span style="color:#EF4444;">*</span></label>
+            <input type="tel" name="phone" placeholder="请输入您的联系电话" required>
+          </div>
+          <div class="form-group">
+            <label>公司名称</label>
+            <input type="text" name="company" placeholder="请输入您的公司名称（选填）">
+          </div>
+          <div class="form-group">
+            <label>服务需求</label>
+            <textarea name="needs" placeholder="请简要描述您的服务需求，例如：公司注册、税务筹划、商标申请等（选填）"></textarea>
+          </div>
+          <button type="submit" class="form-submit">
+            <i class="fa-solid fa-paper-plane"></i> 提交咨询
+          </button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <i class="fa-solid fa-circle-check"></i>
+          <h3 style="color:var(--gray-800);margin:12px 0 8px;">提交成功！</h3>
+          <p>感谢您的咨询，我们的专业顾问将在24小时内与您联系。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <h3>四川贝多财务咨询有限公司</h3>
+        <p>始于1999年，以财税服务为核心的一站式企业服务平台。旗下拥有8家专业子公司，覆盖工商、财务、税务、审计、评估、知识产权、建筑资质、行业许可、项目申报、法律等全链条服务。</p>
+      </div>
+      <div class="footer-col">
+        <h4>核心服务</h4>
+        <ul>
+          <li><a href="#services">工商服务</a></li>
+          <li><a href="#services">财务服务</a></li>
+          <li><a href="#services">税务服务</a></li>
+          <li><a href="#services">审计服务</a></li>
+          <li><a href="#services">法律服务</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>关于我们</h4>
+        <ul>
+          <li><a href="#about">平台简介</a></li>
+          <li><a href="#subsidiaries">旗下机构</a></li>
+          <li><a href="#honors">荣誉资质</a></li>
+          <li><a href="#partners">合作伙伴</a></li>
+          <li><a href="#contact">联系我们</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>联系方式</h4>
+        <ul>
+          <li style="display:flex;align-items:flex-start;gap:8px;"><i class="fa-solid fa-location-dot" style="margin-top:4px;color:var(--gold-light);"></i>成都市二环路西一段天祥广场商务公馆1301</li>
+          <li style="display:flex;align-items:center;gap:8px;"><i class="fa-solid fa-phone" style="color:var(--gold-light);"></i>189-8206-7269</li>
+          <li style="display:flex;align-items:center;gap:8px;"><i class="fa-solid fa-envelope" style="color:var(--gold-light);"></i>1174614459@qq.com</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 四川贝多财务咨询有限公司 版权所有</span>
+      <span><a href="#">ICP备案号</a> | <a href="#">隐私政策</a></span>
+    </div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+<script>
+// ===== Mobile Menu =====
+const navToggle = document.getElementById('navToggle');
+const mobileMenu = document.getElementById('mobileMenu');
+const mobileOverlay = document.getElementById('mobileOverlay');
+const mobileClose = document.getElementById('mobileClose');
+const mobileLinks = mobileMenu.querySelectorAll('a');
+
+function openMenu() { mobileMenu.classList.add('open'); mobileOverlay.classList.add('open'); }
+function closeMenu() { mobileMenu.classList.remove('open'); mobileOverlay.classList.remove('open'); }
+navToggle.addEventListener('click', openMenu);
+mobileClose.addEventListener('click', closeMenu);
+mobileOverlay.addEventListener('click', closeMenu);
+mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+// ===== Navbar Scroll =====
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => {
+  if (window.scrollY > 50) nav.classList.add('scrolled');
+  else nav.classList.remove('scrolled');
+});
+
+// ===== GSAP ScrollTrigger =====
+gsap.registerPlugin(ScrollTrigger);
+
+// Fade-up animations
+document.querySelectorAll('.fade-up').forEach((el, i) => {
+  gsap.fromTo(el,
+    { opacity:0, y:50 },
+    { opacity:1, y:0, duration:0.8, ease:'power3.out',
+      scrollTrigger:{ trigger:el, start:'top 85%', toggleActions:'play none none none' },
+      delay: (i % 4) * 0.1 }
+  );
+});
+
+// Service cards stagger
+const serviceCards = document.querySelectorAll('.service-card');
+serviceCards.forEach((card, i) => {
+  gsap.fromTo(card,
+    { opacity:0, y:40 },
+    { opacity:1, y:0, duration:0.6, ease:'power2.out',
+      scrollTrigger:{ trigger:card, start:'top 88%', toggleActions:'play none none none' },
+      delay: i * 0.05 }
+  );
+});
+
+// Subsidiary cards stagger
+const subsidiaryCards = document.querySelectorAll('.subsidiary-card');
+subsidiaryCards.forEach((card, i) => {
+  gsap.fromTo(card,
+    { opacity:0, y:30, scale:0.96 },
+    { opacity:1, y:0, scale:1, duration:0.5, ease:'power2.out',
+      scrollTrigger:{ trigger:card, start:'top 88%', toggleActions:'play none none none' },
+      delay: i * 0.06 }
+  );
+});
+
+// Stats counter animation
+const counterSection = document.querySelector('.stats');
+ScrollTrigger.create({
+  trigger: counterSection,
+  start: 'top 70%',
+  onEnter: () => {
+    document.querySelectorAll('.counter').forEach(counter => {
+      const target = parseInt(counter.getAttribute('data-target'));
+      const duration = 2000;
+      const startTime = performance.now();
+      const animate = (now) => {
+        const elapsed = now - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        counter.textContent = Math.floor(eased * target).toLocaleString();
+        if (progress < 1) requestAnimationFrame(animate);
+        else counter.textContent = target.toLocaleString();
+      };
+      requestAnimationFrame(animate);
+    });
+  },
+  once: true
+});
+
+// Timeline items
+const timelineItems = document.querySelectorAll('.timeline-item');
+timelineItems.forEach((item, i) => {
+  const content = item.querySelector('.timeline-content');
+  gsap.fromTo(content,
+    { opacity:0, x: i % 2 === 0 ? -60 : 60 },
+    { opacity:1, x:0, duration:0.7, ease:'power3.out',
+      scrollTrigger:{ trigger:item, start:'top 80%', toggleActions:'play none none none' } }
+  );
+  gsap.fromTo(item.querySelector('.timeline-dot'),
+    { scale:0 },
+    { scale:1, duration:0.5, ease:'back.out(2)',
+      scrollTrigger:{ trigger:item, start:'top 80%', toggleActions:'play none none none' } }
+  );
+});
+
+// Honor cards stagger
+document.querySelectorAll('.honor-card').forEach((card, i) => {
+  gsap.fromTo(card,
+    { opacity:0, y:30 },
+    { opacity:1, y:0, duration:0.5, ease:'power2.out',
+      scrollTrigger:{ trigger:card, start:'top 88%', toggleActions:'play none none none' },
+      delay: i * 0.1 }
+  );
+});
+
+// Partner cards stagger
+document.querySelectorAll('.partner-card').forEach((card, i) => {
+  gsap.fromTo(card,
+    { opacity:0, y:20 },
+    { opacity:1, y:0, duration:0.4, ease:'power2.out',
+      scrollTrigger:{ trigger:card, start:'top 90%', toggleActions:'play none none none' },
+      delay: i * 0.04 }
+  );
+});
+
+// Hero elements animation
+gsap.fromTo('.hero-badge', { opacity:0, y:30 }, { opacity:1, y:0, duration:0.8, delay:0.2 });
+gsap.fromTo('.hero h1', { opacity:0, y:40 }, { opacity:1, y:0, duration:0.9, delay:0.4 });
+gsap.fromTo('.hero-desc', { opacity:0, y:30 }, { opacity:1, y:0, duration:0.8, delay:0.6 });
+gsap.fromTo('.hero-btns', { opacity:0, y:30 }, { opacity:1, y:0, duration:0.8, delay:0.8 });
+gsap.fromTo('.hero-stats', { opacity:0, y:30 }, { opacity:1, y:0, duration:0.8, delay:1.0 });
+
+// ===== Form Submit =====
+function handleSubmit(e) {
+  e.preventDefault();
+  const form = document.getElementById('contactForm');
+  const success = document.getElementById('formSuccess');
+  const submitBtn = form.querySelector('.form-submit');
+  const originalBtnText = submitBtn.innerHTML;
+
+  // Collect form data
+  const formData = new FormData(form);
+  const data = {};
+  formData.forEach((v, k) => data[k] = v);
+
+  // Show loading state
+  submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 提交中...';
+  submitBtn.disabled = true;
+
+  // Send to WeCom Webhook
+  const webhookUrl = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=cca569a2-0f10-48a9-beb7-37312dba13cd';
+  const timestamp = new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' });
+  const message = {
+    msgtype: 'markdown',
+    markdown: {
+      content: `## 📥 新客户留资\n**时间**：${timestamp}\n**姓名**：${data.name || '未填写'}\n**电话**：${data.phone || '未填写'}\n**公司**：${data.company || '未填写'}\n**需求**：${data.needs || '未填写'}\n\n[查看详情](${window.location.href})`
+    }
+  };
+
+  fetch(webhookUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(message)
+  })
+  .then(response => response.json())
+  .then(result => {
+    // Show success regardless of webhook result
+    form.style.display = 'none';
+    success.style.display = 'block';
+    console.log('Form submitted to WeCom:', result);
+  })
+  .catch(error => {
+    // Still show success to user (fail silently)
+    form.style.display = 'none';
+    success.style.display = 'block';
+    console.warn('Webhook error (user still sees success):', error);
+  })
+  .finally(() => {
+    // Reset button state
+    submitBtn.innerHTML = originalBtnText;
+    submitBtn.disabled = false;
+  });
+
+  return false;
+}
+
+// Smooth scroll for nav links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+  anchor.addEventListener('click', function(e) {
+    const target = document.querySelector(this.getAttribute('href'));
+    if (target) {
+      e.preventDefault();
+      target.scrollIntoView({ behavior:'smooth', block:'start' });
+    }
+  });
+});
+</script>
+
+</body>
+</html>
