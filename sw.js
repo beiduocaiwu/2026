@@ -15,7 +15,7 @@ self.addEventListener('fetch', (event) => {
   const url = new URL(event.request.url);
 
   // 只拦截 /api/submit 请求
-  if (url.pathname === '/api/submit' && event.request.method === 'POST') {
+  if (url.pathname === '/2026/api/submit' && event.request.method === 'POST') {
     event.respondWith(handleSubmit(event.request));
   }
 });
