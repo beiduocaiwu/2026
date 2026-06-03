@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>服务详情 - 贝多财税</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<style>
+:root {
+  --blue-deep: #0A1F3F; --blue-dark: #132D54; --blue-mid: #1B4F8A; --blue: #2563EB;
+  --blue-light: #3B82F6; --blue-soft: #EFF6FF; --gold: #C8922B; --gold-light: #F0C060;
+  --white: #FFFFFF; --gray-50: #F9FAFB; --gray-100: #F3F4F6; --gray-200: #E5E7EB;
+  --gray-300: #D1D5DB; --gray-400: #9CA3AF; --gray-500: #6B7280; --gray-600: #4B5563;
+  --gray-700: #374151; --gray-800: #1F2937; --gray-900: #111827;
+  --radius: 12px; --shadow-lg: 0 20px 50px -12px rgba(0,0,0,0.12);
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif; color: var(--gray-700); background: var(--white); line-height:1.7; }
+
+.container { max-width:1200px; margin:0 auto; padding:0 24px; }
+
+/* Nav */
+.nav { position:fixed; top:0; left:0; right:0; z-index:1000; padding:14px 0; background: rgba(10,31,63,0.97); backdrop-filter: blur(16px); }
+.nav-inner { max-width:1200px; margin:0 auto; padding:0 24px; display:flex; align-items:center; justify-content:space-between; }
+.nav-logo { display:flex; align-items:center; gap:12px; text-decoration:none; }
+.nav-logo-img { height:36px; width:auto; }
+.nav-back { color: var(--gold-light); text-decoration:none; font-size:14px; display:flex; align-items:center; gap:6px; transition: color 0.3s; }
+.nav-back:hover { color: var(--white); }
+
+/* Hero */
+.hero { padding:120px 0 60px; background:linear-gradient(135deg, var(--blue-deep), var(--blue-mid)); color:var(--white); text-align:center; }
+.hero-icon { width:80px; height:80px; background:rgba(255,255,255,0.1); border-radius:20px; display:flex; align-items:center; justify-content:center; margin:0 auto 24px; font-size:36px; }
+.hero h1 { font-size:36px; font-weight:800; margin-bottom:12px; }
+.hero p { font-size:16px; opacity:0.8; max-width:600px; margin:0 auto; }
+
+/* Content */
+.content-section { padding:60px 0; }
+.content-grid { display:grid; grid-template-columns:1fr 380px; gap:60px; align-items:start; }
+.content-main h2 { font-size:24px; font-weight:700; color:var(--gray-900); margin-bottom:16px; }
+.content-main h3 { font-size:18px; font-weight:600; color:var(--gray-800); margin:32px 0 12px; }
+.content-main p, .content-main li { font-size:15px; color:var(--gray-600); margin-bottom:8px; }
+.content-main ul { padding-left:20px; margin-bottom:16px; }
+.content-main ul li { margin-bottom:6px; }
+
+/* Feature cards */
+.features { display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-top:24px; }
+.feature-card { background:var(--blue-soft); border-radius:12px; padding:24px; text-align:center; }
+.feature-card i { font-size:28px; color:var(--blue); margin-bottom:10px; }
+.feature-card h4 { font-size:15px; font-weight:600; color:var(--gray-800); margin-bottom:6px; }
+.feature-card p { font-size:13px; color:var(--gray-500); margin:0; }
+
+/* Sidebar Form */
+.form-card { background:var(--white); border-radius:16px; padding:32px; box-shadow:var(--shadow-lg); border:1px solid var(--gray-200); position:sticky; top:100px; }
+.form-card h3 { font-size:20px; font-weight:700; color:var(--gray-900); margin-bottom:8px; }
+.form-card .subtitle { font-size:13px; color:var(--gray-400); margin-bottom:24px; }
+.form-group { margin-bottom:16px; }
+.form-group label { display:block; font-size:13px; font-weight:600; color:var(--gray-600); margin-bottom:6px; }
+.form-group input, .form-group select, .form-group textarea { width:100%; padding:10px 14px; border:1px solid var(--gray-200); border-radius:8px; font-size:14px; color:var(--gray-800); transition:border 0.3s; outline:none; font-family:inherit; }
+.form-group input:focus, .form-group select:focus, .form-group textarea:focus { border-color:var(--blue); }
+.form-group textarea { height:80px; resize:vertical; }
+.btn-submit { width:100%; padding:12px; background:linear-gradient(135deg, var(--gold), var(--gold-light)); color:var(--white); border:none; border-radius:8px; font-size:15px; font-weight:600; cursor:pointer; transition:0.3s; }
+.btn-submit:hover { transform:translateY(-1px); box-shadow:0 4px 12px rgba(200,146,43,0.3); }
+.btn-submit:disabled { opacity:0.6; cursor:not-allowed; transform:none; }
+.form-success { display:none; text-align:center; padding:40px 20px; }
+.form-success i { font-size:48px; color:#10B981; margin-bottom:16px; }
+.form-success h3 { color:var(--gray-900); margin-bottom:8px; }
+.form-success p { color:var(--gray-500); font-size:14px; }
+
+/* Process */
+.process { display:flex; gap:0; margin-top:24px; }
+.process-step { flex:1; text-align:center; position:relative; }
+.process-step::after { content:''; position:absolute; top:18px; right:-50%; width:100%; height:2px; background:var(--gray-200); }
+.process-step:last-child::after { display:none; }
+.process-num { width:36px; height:36px; background:var(--blue); color:var(--white); border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 10px; font-size:14px; font-weight:700; }
+.process-step h4 { font-size:13px; font-weight:600; color:var(--gray-700); margin-bottom:4px; }
+.process-step p { font-size:11px; color:var(--gray-400); margin:0; }
+
+/* CTA Banner */
+.cta-banner { background:linear-gradient(135deg, var(--blue-deep), var(--blue-mid)); border-radius:16px; padding:40px; margin-top:60px; text-align:center; color:var(--white); }
+.cta-banner h2 { font-size:24px; font-weight:700; margin-bottom:8px; }
+.cta-banner p { font-size:15px; opacity:0.8; margin-bottom:20px; }
+.cta-banner .btn-cta { display:inline-block; padding:12px 32px; background:var(--gold); color:var(--white); border-radius:8px; text-decoration:none; font-weight:600; transition:0.3s; }
+.cta-banner .btn-cta:hover { background:var(--gold-light); transform:translateY(-2px); }
+
+/* Footer */
+.footer { background:var(--blue-deep); color:rgba(255,255,255,0.6); text-align:center; padding:24px; font-size:13px; margin-top:60px; }
+
+@media (max-width: 768px) {
+  .content-grid { grid-template-columns:1fr; }
+  .features { grid-template-columns:1fr 1fr; }
+  .process { flex-wrap:wrap; gap:16px; }
+  .process-step { flex:0 0 calc(50% - 8px); }
+  .process-step::after { display:none; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="index.html" class="nav-logo">
+      <img src="logo.png" alt="贝多财税" class="nav-logo-img">
+    </a>
+    <a href="index.html#services" class="nav-back"><i class="fa-solid fa-arrow-left"></i> 返回服务列表</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-icon" id="heroIcon"></div>
+  <h1 id="heroTitle"></h1>
+  <p id="heroDesc"></p>
+</section>
+
+<!-- CONTENT -->
+<section class="content-section">
+  <div class="container">
+    <div class="content-grid">
+      <!-- Main Content -->
+      <div class="content-main" id="serviceContent"></div>
+      <!-- Form Sidebar -->
+      <div class="form-card" id="formCard">
+        <h3>免费获取方案</h3>
+        <p class="subtitle">专业顾问将在24小时内与您联系</p>
+        <form id="leadForm">
+          <input type="hidden" id="formService" value="">
+          <div class="form-group"><label>您的姓名 *</label><input type="text" id="formName" required placeholder="请输入姓名"></div>
+          <div class="form-group"><label>手机号码 *</label><input type="tel" id="formPhone" required placeholder="请输入手机号"></div>
+          <div class="form-group"><label>公司名称</label><input type="text" id="formCompany" placeholder="请输入公司名称"></div>
+          <div class="form-group"><label>具体需求</label><textarea id="formNeeds" placeholder="请描述您的具体需求..."></textarea></div>
+          <button type="submit" class="btn-submit" id="submitBtn">提交需求</button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <i class="fa-solid fa-circle-check"></i>
+          <h3>提交成功</h3>
+          <p>感谢您的信任！我们将在24小时内与您联系。</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="container">
+  <div class="cta-banner">
+    <h2>还有其他服务需求？</h2>
+    <p>贝多财税提供工商、财务、税务、审计、评估等11大品类一站式服务</p>
+    <a href="#formCard" class="btn-cta">立即咨询</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">&copy; 2026 四川贝多财务咨询有限公司 版权所有</footer>
+
+<script>
+// ====== SERVICE DATA ======
+const services = {
+  '工商服务': {
+    icon: 'fa-building-circle-check',
+    title: '工商服务',
+    desc: '公司注册、变更、注销、工商年报等一站式工商代办服务',
+    intro: '贝多财务深耕工商服务二十余年，拥有丰富的工商注册经验和政府资源，为企业提供全方位的工商事务解决方案。从公司设立到日常变更再到注销清算，我们全程陪伴。',
+    advantages: [
+      { icon: 'fa-bolt', title: '快速高效', desc: '加急办理3个工作日拿证' },
+      { icon: 'fa-shield-halved', title: '专业可靠', desc: '20年工商代办经验' },
+      { icon: 'fa-hand-holding-dollar', title: '价格透明', desc: '无隐形收费，明码标价' }
+    ],
+    sections: [
+      { title: '服务内容', items: ['公司注册（有限公司、股份公司、合伙企业等）', '工商变更（法人、股东、经营范围、地址等）', '公司注销（简易注销、一般注销）', '工商年报申报', '工商异常解除', '增资减资、股权转让'] },
+      { title: '办理流程', items: ['1. 客户咨询，确定服务方案', '2. 准备材料，核名预审', '3. 提交工商局审批', '4. 领取营业执照', '5. 后续刻章、银行开户指导'] },
+      { title: '适用对象', items: ['初创企业、个体工商户', '需要变更或注销的企业', '工商异常需要解除的企业'] }
+    ]
+  },
+  '财务服务': {
+    icon: 'fa-coins',
+    title: '财务服务',
+    desc: '代理记账、财务外包、财务咨询、财务体系搭建等专业财务服务',
+    intro: '贝多财务拥有资深注册会计师团队，为企业提供代理记账、财务外包、财务咨询等专业服务，帮助企业规范财务管理、降低经营成本、规避财税风险。',
+    advantages: [
+      { icon: 'fa-user-tie', title: '资深团队', desc: '注册会计师领衔服务' },
+      { icon: 'fa-clock', title: '准时交付', desc: '每月按时完成记账报税' },
+      { icon: 'fa-chart-line', title: '降本增效', desc: '比自聘会计节省60%成本' }
+    ],
+    sections: [
+      { title: '服务内容', items: ['代理记账（小规模/一般纳税人）', '财务外包（全盘账务处理）', '财务咨询与顾问', '财务体系搭建与优化', '财务报表编制', '财务数据分析与经营建议'] },
+      { title: '服务优势', items: ['专业团队：注册会计师+中级会计师双保险', '规范流程：标准化作业流程，确保账务质量', '信息安全：签订保密协议，保障客户数据安全', '及时响应：专属财务顾问一对一服务'] },
+      { title: '适用对象', items: ['中小微企业、个体工商户', '初创公司、创业团队', '需要财务外包的企业'] }
+    ]
+  },
+  '税务服务': {
+    icon: 'fa-receipt',
+    title: '税务服务',
+    desc: '税务筹划、汇算清缴、税务顾问、涉税争议解决等全方位税务服务',
+    intro: '税务筹划是企业降本增效的核心环节。贝多财务旗下金算师税务师事务所，汇聚资深税务师团队，为企业提供合法合规的税务筹划方案，帮助企业合理降低税负。',
+    advantages: [
+      { icon: 'fa-scale-balanced', title: '合法合规', desc: '严格遵循税法，零风险筹划' },
+      { icon: 'fa-magnifying-glass-dollar', title: '精准节税', desc: '平均节税率15%-30%' },
+      { icon: 'fa-headset', title: '全程服务', desc: '从筹划到落地一站式搞定' }
+    ],
+    sections: [
+      { title: '服务内容', items: ['税务筹划（企业所得税、增值税、个税等）', '企业所得税汇算清缴', '税务顾问与常年税务咨询', '涉税争议解决与税务听证', '税务风险评估', '税务注销清算'] },
+      { title: '筹划方向', items: ['企业架构优化：合理设置母子公司、分支机构', '业务模式设计：通过业务分拆、外包降低税负', '优惠政策应用：高新企业、小微优惠、加计扣除', '成本费用规划：合理归集抵扣，最大化税前扣除'] },
+      { title: '适用对象', items: ['税负较高的中小企业', '有税务筹划需求的企业', '面临税务稽查或争议的企业'] }
+    ]
+  },
+  '审计服务': {
+    icon: 'fa-magnifying-glass-chart',
+    title: '审计服务',
+    desc: '年报审计、专项审计、内控审计、离任审计等各类审计鉴证服务',
+    intro: '贝多财务旗下四川天一会计师事务所，具备法定审计资质，为企业提供年报审计、专项审计、内控审计等各类审计鉴证服务，出具权威审计报告。',
+    advantages: [
+      { icon: 'fa-certificate', title: '权威资质', desc: '法定审计资格，报告通用' },
+      { icon: 'fa-list-check', title: '严谨规范', desc: '严格遵循审计准则' },
+      { icon: 'fa-file-signature', title: '快速出稿', desc: '高效完成审计报告' }
+    ],
+    sections: [
+      { title: '服务内容', items: ['年度财务报表审计', '专项审计（项目审计、资金审计等）', '内部控制审计', '离任审计/经济责任审计', '清算审计', '验资报告'] },
+      { title: '审计流程', items: ['1. 签订审计业务约定书', '2. 了解被审计单位基本情况', '3. 实施审计程序（抽查、函证、盘点等）', '4. 编制审计工作底稿', '5. 出具审计报告'] },
+      { title: '适用对象', items: ['需要年报审计的各类企业', '需要专项审计的项目公司', '需要进行内控评估的企业'] }
+    ]
+  },
+  '评估服务': {
+    icon: 'fa-gem',
+    title: '评估服务',
+    desc: '资产评估、房地产评估、土地评估、无形资产评估等专业评估服务',
+    intro: '贝多财务旗下四川天一房地产土地资产评估有限公司，具备专业评估资质，为企业提供资产评估、房地产评估、无形资产评估等专业服务。',
+    advantages: [
+      { icon: 'fa-building-columns', title: '专业资质', desc: '法定评估资格' },
+      { icon: 'fa-chart-pie', title: '科学方法', desc: '多种评估方法综合运用' },
+      { icon: 'fa-file-invoice', title: '权威报告', desc: '评估报告司法认可' }
+    ],
+    sections: [
+      { title: '服务内容', items: ['资产评估（整体资产、单项资产）', '房地产评估（住宅、商业、工业）', '土地评估', '无形资产评估（商标、专利、技术）', '股权价值评估', '抵押/拍卖评估'] },
+      { title: '评估方法', items: ['市场法：参照市场交易价格', '收益法：预测未来收益折现', '成本法：重置成本扣除贬值', '根据评估目的和资产类型选择最优方法'] },
+      { title: '适用对象', items: ['需要进行资产评估的企业', '有房产/土地评估需求的业主', '涉及股权转让、并购重组的企业'] }
+    ]
+  },
+  '知识产权': {
+    icon: 'fa-lightbulb',
+    title: '知识产权',
+    desc: '商标注册、专利申请、版权登记、知识产权维权等全链条服务',
+    intro: '知识产权是企业核心竞争力的重要组成部分。贝多财务旗下顶梁柱商标代理有限公司，提供商标、专利、版权等全方位知识产权服务，守护企业无形资产。',
+    advantages: [
+      { icon: 'fa-magnifying-glass', title: '查重精准', desc: '专业检索降低驳回风险' },
+      { icon: 'fa-rocket', title: '高效办理', desc: '标准化流程缩短周期' },
+      { icon: 'fa-gavel', title: '维权有力', desc: '专业律师团队保驾护航' }
+    ],
+    sections: [
+      { title: '服务内容', items: ['商标注册（国内/国际）', '商标变更、续展、转让、许可', '专利申请（发明/实用新型/外观设计）', '版权登记（软件著作权、作品著作权）', '知识产权维权诉讼', '知识产权战略规划'] },
+      { title: '办理流程', items: ['1. 商标/专利检索与评估', '2. 准备申请材料', '3. 提交国家知识产权局', '4. 审查与公告', '5. 取得证书'] },
+      { title: '适用对象', items: ['需要注册商标/专利的企业', '电商平台品牌保护需求', '科技创新型企业'] }
+    ]
+  },
+  '建筑资质': {
+    icon: 'fa-trowel-bricks',
+    title: '建筑资质',
+    desc: '建筑施工资质新办、升级、延续、转让等建筑行业资质服务',
+    intro: '建筑资质是建筑企业承接工程的通行证。贝多财务旗下天之瓴建设股份有限公司，深耕建筑行业多年，为企业提供建筑资质全周期服务。',
+    advantages: [
+      { icon: 'fa-hard-hat', title: '行业深耕', desc: '熟悉建筑行业政策法规' },
+      { icon: 'fa-arrow-trend-up', title: '通过率高', desc: '专业材料准备确保过审' },
+      { icon: 'fa-handshake', title: '资源丰富', desc: '与主管部门保持良好沟通' }
+    ],
+    sections: [
+      { title: '服务内容', items: ['建筑施工总承包资质（新办/升级）', '专业承包资质（各专业类别）', '资质延续与年检', '资质转让与并购', '安全生产许可证办理', '人员证书配备与培训'] },
+      { title: '资质类别', items: ['施工总承包：建筑/公路/水利/市政等', '专业承包：装修/消防/幕墙/钢结构等', '劳务资质', '设计与施工一体化资质'] },
+      { title: '适用对象', items: ['建筑施工企业', '需要资质升级的建筑公司', '新成立的建筑企业'] }
+    ]
+  },
+  '行业许可': {
+    icon: 'fa-id-card',
+    title: '行业许可',
+    desc: '食品经营许可、医疗器械许可、劳务派遣许可等各类行政许可代办',
+    intro: '不同行业需要不同的经营许可。贝多财务熟悉各行业行政许可办理流程，为企业提供高效、专业的许可证代办服务，让您快速取得经营资质。',
+    advantages: [
+      { icon: 'fa-list', title: '品类齐全', desc: '覆盖30+行业许可类型' },
+      { icon: 'fa-bolt-lightning', title: '快速出证', desc: '熟悉流程，缩短办理周期' },
+      { icon: 'fa-circle-check', title: '一次通过', desc: '材料预审确保合规' }
+    ],
+    sections: [
+      { title: '服务内容', items: ['食品经营许可证', '医疗器械经营许可证', '劳务派遣经营许可证', '人力资源服务许可证', '道路运输经营许可证', '出版物经营许可证', '危险化学品经营许可证', '其他各类行政许可'] },
+      { title: '服务流程', items: ['1. 了解企业需求，确定许可类型', '2. 指导准备申请材料', '3. 提交主管部门审核', '4. 跟进审批进度', '5. 领取许可证照'] },
+      { title: '适用对象', items: ['新开设企业需要办理行业许可的', '许可证到期需要延续的', '经营范围变更需要新办许可的'] }
+    ]
+  },
+  '项目申报': {
+    icon: 'fa-bullseye',
+    title: '项目申报',
+    desc: '高新技术企业认定、政府补贴申报、科技项目申报等政策咨询服务',
+    intro: '政府项目申报是企业获取政策红利的重要途径。贝多财务熟悉各类政策项目申报流程，帮助企业精准匹配政策，提高申报成功率。',
+    advantages: [
+      { icon: 'fa-crosshairs', title: '精准匹配', desc: '海量政策库智能匹配项目' },
+      { icon: 'fa-file-pen', title: '材料专业', desc: '资深文案撰写申报材料' },
+      { icon: 'fa-trophy', title: '高成功率', desc: '平均通过率超90%' }
+    ],
+    sections: [
+      { title: '服务内容', items: ['高新技术企业认定', '科技型中小企业评价', '专精特新企业认定', '政府补贴资金申报', '科技项目申报', '研发费用加计扣除', '企业技术中心认定'] },
+      { title: '申报流程', items: ['1. 企业诊断，匹配政策项目', '2. 制定申报方案', '3. 撰写申报材料', '4. 提交申报', '5. 答辩辅导与跟进', '6. 项目验收'] },
+      { title: '适用对象', items: ['科技创新型企业', '有研发投入的制造业企业', '希望获取政府补贴的中小企业'] }
+    ]
+  },
+  '保函办理': {
+    icon: 'fa-file-shield',
+    title: '保函办理',
+    desc: '投标保函、履约保函、预付款保函等各类保函一站式办理服务',
+    intro: '保函是工程投标和履约中的重要金融工具。贝多财务与多家银行及担保机构深度合作，为企业提供各类保函的快速办理服务。',
+    advantages: [
+      { icon: 'fa-bank', title: '银行直通', desc: '合作银行20+，选择多样' },
+      { icon: 'fa-truck-fast', title: '极速出函', desc: '最快当天出函' },
+      { icon: 'fa-coins', title: '费率优惠', desc: '长期合作享受优惠费率' }
+    ],
+    sections: [
+      { title: '服务内容', items: ['投标保函', '履约保函', '预付款保函', '质量保函', '农民工工资支付保函', '诉讼保函'] },
+      { title: '办理流程', items: ['1. 客户提交保函需求', '2. 匹配合适的银行/担保机构', '3. 准备申请材料', '4. 银行审核', '5. 出函交付'] },
+      { title: '适用对象', items: ['建筑施工单位', '参与招投标的企业', '需要履约担保的项目方'] }
+    ]
+  },
+  '法律服务': {
+    icon: 'fa-scale-balanced',
+    title: '法律服务',
+    desc: '常年法律顾问、合同审查、诉讼代理等企业法律风险防控服务',
+    intro: '贝多财务旗下四川坤弘律师事务所，汇聚资深执业律师团队，为企业提供常年法律顾问、合同审查、诉讼代理等专业法律服务，守护企业合法权益。',
+    advantages: [
+      { icon: 'fa-user-tie', title: '资深律师', desc: '执业10年+律师团队' },
+      { icon: 'fa-file-contract', title: '风险防控', desc: '事前预防优于事后救火' },
+      { icon: 'fa-scale-balanced', title: '胜诉率高', desc: '代理案件胜诉率超95%' }
+    ],
+    sections: [
+      { title: '服务内容', items: ['常年法律顾问', '合同审查与起草', '民商事诉讼代理', '劳动纠纷处理', '企业法律风险体检', '股权架构设计与公司治理', '知识产权诉讼'] },
+      { title: '服务方式', items: ['线上+线下结合，随时随地响应', '定期走访，主动排查风险', '合同审查最快24小时反馈', '紧急事务2小时内响应'] },
+      { title: '适用对象', items: ['需要常年法律顾问的企业', '面临诉讼或纠纷的公司', '需要进行合同审查和风险防控的企业'] }
+    ]
+  }
+};
+
+// ====== PAGE INIT ======
+const params = new URLSearchParams(window.location.search);
+const serviceName = params.get('s') || '工商服务';
+const data = services[serviceName];
+
+if (!data) {
+  document.querySelector('.hero h1').textContent = '服务未找到';
+  document.querySelector('.hero p').textContent = '请返回服务列表选择';
+} else {
+  document.title = data.title + ' - 贝多财税';
+  document.getElementById('heroIcon').innerHTML = '<i class="fa-solid ' + data.icon + '"></i>';
+  document.getElementById('heroTitle').textContent = data.title;
+  document.getElementById('heroDesc').textContent = data.desc;
+  document.getElementById('formService').value = data.title;
+
+  let html = '<h2>服务简介</h2><p>' + data.intro + '</p>';
+
+  // Advantages
+  html += '<div class="features">';
+  data.advantages.forEach(a => {
+    html += '<div class="feature-card"><i class="fa-solid ' + a.icon + '"></i><h4>' + a.title + '</h4><p>' + a.desc + '</p></div>';
+  });
+  html += '</div>';
+
+  // Sections
+  data.sections.forEach(s => {
+    html += '<h3>' + s.title + '</h3><ul>';
+    s.items.forEach(item => { html += '<li>' + item + '</li>'; });
+    html += '</ul>';
+  });
+
+  document.getElementById('serviceContent').innerHTML = html;
+}
+
+// ====== FORM SUBMIT ======
+document.getElementById('leadForm').addEventListener('submit', function(e) {
+  e.preventDefault();
+  const submitBtn = document.getElementById('submitBtn');
+  submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 提交中...';
+  submitBtn.disabled = true;
+
+  const proxyUrl = 'https://vercel-proxy-islegge18-beiduocaiwus-projects.vercel.app/api/wecom-proxy';
+  const timestamp = new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' });
+
+  fetch(proxyUrl, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({
+      name: document.getElementById('formName').value,
+      phone: document.getElementById('formPhone').value,
+      company: document.getElementById('formCompany').value,
+      needs: '【' + document.getElementById('formService').value + '】' + (document.getElementById('formNeeds').value || ''),
+      timestamp: timestamp
+    })
+  })
+  .then(r => r.json())
+  .then(() => {
+    document.getElementById('leadForm').style.display = 'none';
+    document.getElementById('formSuccess').style.display = 'block';
+  })
+  .catch(() => {
+    alert('提交失败，请稍后重试或直接拨打咨询热线');
+    submitBtn.innerHTML = '提交需求';
+    submitBtn.disabled = false;
+  });
+});
+</script>
+
+</body>
+</html>
