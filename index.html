@@ -893,10 +893,11 @@ function handleSubmit(e) {
   submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 提交中...';
   submitBtn.disabled = true;
 
-  // Service Worker 代理（无 CORS 限制）
+  // Cloudflare 隧道代理
+  const proxyUrl = 'https://2026.1174614459.workers.dev/api/submit';
   const timestamp = new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' });
 
-  fetch('/2026/api/submit', {
+  fetch(proxyUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
@@ -907,18 +908,15 @@ function handleSubmit(e) {
       timestamp: timestamp
     })
   })
-  .then(response => response.json())
-  .then(result => {
-    // Show success regardless of webhook result
+  .then(() => {
     form.style.display = 'none';
     success.style.display = 'block';
-    console.log('Form submitted to WeCom:', result);
+    console.log('WeCom webhook sent');
   })
-  .catch(error => {
-    // Still show success to user (fail silently)
+  .catch(() => {
     form.style.display = 'none';
     success.style.display = 'block';
-    console.warn('Webhook error (user still sees success):', error);
+    console.warn('WeCom webhook failed');
   })
   .finally(() => {
     // Reset button state
@@ -939,13 +937,6 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     }
   });
 });
-
-// Register Service Worker for WeCom webhook proxy
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/2026/sw.js')
-    .then(() => console.log('SW registered'))
-    .catch(err => console.warn('SW registration failed:', err));
-}
 </script>
 
 </body>

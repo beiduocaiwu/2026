@@ -376,36 +376,33 @@ document.getElementById('leadForm').addEventListener('submit', function(e) {
   submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> 提交中...';
   submitBtn.disabled = true;
 
+  // Cloudflare 隧道代理
+  const proxyUrl = 'https://2026.1174614459.workers.dev/api/submit';
   const timestamp = new Date().toLocaleString('zh-CN', { timeZone: 'Asia/Shanghai' });
 
-  fetch('/2026/api/submit', {
+  fetch(proxyUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      name: document.getElementById('formName').value,
-      phone: document.getElementById('formPhone').value,
-      company: document.getElementById('formCompany').value,
-      needs: '【' + document.getElementById('formService').value + '】' + (document.getElementById('formNeeds').value || ''),
-      timestamp: timestamp
+      name: document.getElementById('formName').value || '',
+      phone: document.getElementById('formPhone').value || '',
+      company: document.getElementById('formCompany').value || '',
+      needs: document.getElementById('formNeeds').value || '',
+      timestamp: timestamp,
+      service: document.getElementById('formService').value || ''
     })
   })
-  .then(r => r.json())
   .then(() => {
     document.getElementById('leadForm').style.display = 'none';
     document.getElementById('formSuccess').style.display = 'block';
+    console.log('WeCom webhook sent');
   })
   .catch(() => {
     document.getElementById('leadForm').style.display = 'none';
     document.getElementById('formSuccess').style.display = 'block';
+    console.warn('WeCom webhook failed');
   });
 });
-
-// Register Service Worker for WeCom webhook proxy
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/2026/sw.js')
-    .then(() => console.log('SW registered'))
-    .catch(err => console.warn('SW registration failed:', err));
-}
 </script>
 
 </body>
