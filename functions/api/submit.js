@@ -1,9 +1,17 @@
-// Cloudflare Pages Function - 企业微信消息代理
-// 放置路径: 2026/functions/api/submit.js
-// 部署后访问: https://2026.1174614459.workers.dev/api/submit
+export async function onRequest(context) {
+  if (context.request.method === 'OPTIONS') {
+    return new Response(null, {
+      headers: {
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Methods': 'POST, OPTIONS',
+        'Access-Control-Allow-Headers': 'Content-Type',
+      },
+    });
+  }
 
-export async function onRequestPost(context) {
-  const WECOM_WEBHOOK = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=cca569a2-0f10-48a9-beb7-37312dba13cd';
+  if (context.request.method !== 'POST') {
+    return new Response('Not Found', { status: 404 });
+  }
 
   try {
     const data = await context.request.json();
@@ -19,7 +27,7 @@ export async function onRequestPost(context) {
       `> 时间：${ts}`,
     ].join('\n');
 
-    await fetch(WECOM_WEBHOOK, {
+    await fetch('https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=cca569a2-0f10-48a9-beb7-37312dba13cd', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ msgtype: 'markdown', markdown: { content: markdown } }),
